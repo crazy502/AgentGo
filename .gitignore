@@ -1,0 +1,58 @@
+# 操作系统 & 编译器
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# 后端（Gin/Go）
+# 编译产物
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Go 测试与覆盖率
+*.test
+*.out
+
+# 依赖（Go Modules 通常不提交 vendor）
+vendor/
+
+# Go 工作区（如果使用 go work）
+go.work
+go.work.sum
+
+# 本地配置（敏感信息）
+.env
+config.yaml
+config.toml
+
+# 前端 (Vue.js)
+node_modules/
+dist/
+.nuxt/          # 如果用 Nuxt
+.cache/
+.temp/
+coverage/
+
+# Vue CLI / Vite 缓存
+.vite/
+.cache/
+
+# 数据库 & 缓存
+*.sql.dump
+dump/
+
+# 消息队列 & 日志
+*.log
+logs/
+
+# AI 模型 & ONNX
+*.onnx
+models/
+
+# 临时推理缓存或上传的图像
+uploads/
+tmp/
