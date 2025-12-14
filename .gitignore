@@ -1,4 +1,4 @@
-# 操作系统 & 编辑器
+# OS & Editor
 .DS_Store
 Thumbs.db
 *.swp
@@ -7,38 +7,38 @@ Thumbs.db
 .idea/
 
 # Server (Go)
-# 编译产物
+
+# Build artifacts
 *.exe
 *.dll
 *.so
 *.dylib
 
-# 测试与覆盖率
+# Test & coverage
 *.test
 *.out
 
-# 依赖（除非刻意 vendoring）
+# Dependencies
 vendor/
 
-# 工作区文件
+# Workspace
 go.work
 go.work.sum
 
-# 敏感配置（必须忽略！）
+# Sensitive config
 .env
+.env.*
 server/config/config.toml
+!server/config/config.example.toml
 
-# 日志
+# Logs & temp
 *.log
 logs/
-
-# 临时文件
 tmp/
 uploads/
 
 
-# Client (Vue.js)
-
+# Client (Vue)
 client/node_modules/
 client/dist/
 client/.vite/
@@ -46,12 +46,10 @@ client/.cache/
 client/coverage/
 
 
-# AI 模型（大文件，不进 Git）
+# AI Models (large files)
 *.onnx
-models/
+ai-models/
 
-
-# 其他
-# 避免提交本地数据库 dump（如有）
+# Others
 *.sql.dump
 dump/
