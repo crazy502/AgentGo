@@ -1,4 +1,4 @@
-// Package user 执行业务逻辑
+// Package user 提供用户领域的业务服务，实现用户登录、注册及验证码处理等核心业务逻辑
 package user
 
 import (
