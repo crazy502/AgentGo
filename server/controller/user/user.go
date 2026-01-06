@@ -1,4 +1,8 @@
-// Package user controller层负责把HTTP请求转换成service能理解的参数
+// Package user controller层 实现用户相关的HTTP控制器
+// 负责
+//   - 解析和校验HTTP请求参数
+//     -调用service层执行业务逻辑
+//   - 构造并返回HTTP响应
 package user
 
 import (
@@ -13,7 +17,7 @@ type (
 	//目前username只能是账号登录（后期考虑添加邮箱账号均可）
 	LoginRequest struct {
 		Username string `json:"username"`
-		Password string `json:"password""`
+		Password string `json:"password"`
 	}
 	// omitempty当字段为空的时候，不返回这个东西
 	LoginResponse struct {
@@ -42,6 +46,12 @@ type (
 	}
 )
 
+// Login 用户登录
+//
+// 处理流程：
+//  1. 解析请求参数
+//  2. 调用service层执行登录逻辑
+//  3. 返回登录结果与JWT令牌
 func Login(c *gin.Context) {
 
 	req := new(LoginRequest)
@@ -63,6 +73,12 @@ func Login(c *gin.Context) {
 
 }
 
+// Register 用户注册
+//
+// 处理流程：
+//  1. 解析请求参数
+//  2. 调用service层执行注册逻辑
+//  3. 构造并返回注册结果与JWT令牌
 func Register(c *gin.Context) {
 
 	req := new(RegisterRequest)
@@ -83,6 +99,12 @@ func Register(c *gin.Context) {
 	c.JSON(http.StatusOK, res)
 }
 
+// HandleCaptcha 向指定邮箱发送验证码
+//
+// 处理流程：
+//  1. 解析并校验邮箱参数
+//  2. 生成验证码并存入Redis
+//  3. 通过邮件系统发送验证码
 func HandleCaptcha(c *gin.Context) {
 	req := new(CaptchaRequest)
 	res := new(CaptchaResponse)
