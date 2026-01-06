@@ -1,4 +1,4 @@
-// Package user 提供用户领域的业务服务，实现用户登录、注册及验证码处理等核心业务逻辑
+// Package user service层提供用户领域的业务服务，实现用户登录、注册及验证码处理等核心业务逻辑
 package user
 
 import (
@@ -72,17 +72,17 @@ func Register(email, password, captcha string) (string, code.Code) {
 	//3:生成11位账号
 	username := utils.GetRandomNumbers(11)
 
-	//4:注册到数据库中
+	//4:注册到数据库中（调用DAO）
 	if userInfo, ok = user.Register(username, email, password); !ok {
 		return "", code.CodeServerBusy
 	}
 
-	//5:将账号一并发送到对应邮箱上，后续需要账号登录
+	//5:将账号一并发送到对应邮箱上，后续需要账号登录（业务通知）
 	if err := myemail.SendCaptcha(email, username, user.UserNameMsg); err != nil {
 		return "", code.CodeServerBusy
 	}
 
-	//6:生成Token
+	//6:生成Token（登录凭证）
 	token, err := myjwt.GenerateToken(userInfo.ID, userInfo.Username)
 
 	if err != nil {
